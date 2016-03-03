@@ -21,23 +21,7 @@
 #if defined(_WIN32)
 
 // -- WIN32
-#include <assert.h>
-#include <direct.h>
-#include <limits.h>
-#include <stdio.h>
-#include <string.h>
-#include <time.h>
-#include <wchar.h>
-
-#include "uv.h"
-#include "internal.h"
-
-#include <winsock2.h>
-#include <winperf.h>
-#include <iphlpapi.h>
-#include <psapi.h>
-#include <tlhelp32.h>
-#include <windows.h>
+#include "win_helper.h"
 #include <userenv.h>
 // -- WIN32
 
@@ -126,7 +110,7 @@ int __GetTrueHomeDir(char* buffer, size_t* size)
 
     if(OpenProcessToken(GetCurrentProcess(), TOKEN_READ, &token) == 0)
     {
-        return uv_translate_sys_error(GetLastError());
+        return WHTranslateSysError(GetLastError());
     }
 
     bufsize = MAX_PATH;
@@ -141,16 +125,16 @@ int __GetTrueHomeDir(char* buffer, size_t* size)
             return UV_EIO;
         }
 
-        return uv_translate_sys_error(r);
+        return WHTranslateSysError(r);
     }
 
     CloseHandle(token);
 
     /*  Check how much space we need */
-    bufsize = uv_utf16_to_utf8(path, -1, NULL, 0);
+    bufsize = WHUtf16ToUtf8(path, -1, NULL, 0);
     if(bufsize == 0)
     {
-        return uv_translate_sys_error(GetLastError());
+        return WHTranslateSysError(GetLastError());
     }
     else
     if(bufsize > *size)
@@ -160,10 +144,10 @@ int __GetTrueHomeDir(char* buffer, size_t* size)
     }
 
     /*  Convert to UTF-8 */
-    bufsize = uv_utf16_to_utf8(path, -1, buffer, *size);
+    bufsize = WHUtf16ToUtf8(path, -1, buffer, *size);
     if(bufsize == 0)
     {
-        return uv_translate_sys_error(GetLastError());
+        return WHTranslateSysError(GetLastError());
     }
 
     *size = bufsize - 1;
