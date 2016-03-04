@@ -6,9 +6,9 @@
  */
 "use strict";
 
-var syncRunner = require("sync-runner");
+require("should");
 
-describe(function() {
+describe("homedir", function() {
     var homedir = require("../");
     
     it("should equal to $HOME and os", function() {
@@ -23,6 +23,7 @@ describe(function() {
 
     it("should equal to another user", function() {
         if(process.env.TRAVIS) {
+            var syncRunner = require("sync-runner");
             syncRunner("useradd -m test");
             var result = syncRunner("sudo -u test node test/test_script.js");
             result.should.be.eql("/home/test");
