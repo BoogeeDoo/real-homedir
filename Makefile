@@ -1,10 +1,9 @@
-UGLIFY_PATH=./node_modules/.bin/uglifyjs
 MOCHA_PATH=./node_modules/.bin/_mocha
 ISTANBUL_PATH=./node_modules/.bin/istanbul
 COVERALLS_PATH=./node_modules/.bin/coveralls
 
 test-coveralls:
-	@$(ISTANBUL_PATH) cover $(MOCHA_PATH) \
+	@TRAVIS=true $(ISTANBUL_PATH) cover $(MOCHA_PATH) \
 		--report lcovonly \
 		-- \
 		-R spec && \
@@ -15,5 +14,6 @@ test-coveralls:
 
 test:
 	@TRAVIS=true $(MOCHA_PATH) test/test.js
+
 
 .PHONY: test test-coveralls
