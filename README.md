@@ -1,5 +1,12 @@
 # Real Homedir
 
+[![Real Homedir](http://img.shields.io/npm/v/real-homedir.svg)](https://www.npmjs.org/package/real-homedir)
+[![Real Homedir](http://img.shields.io/npm/dm/real-homedir.svg)](https://www.npmjs.org/package/real-homedir)
+[![Build Status](https://travis-ci.org/BoogeeDoo/real-homedir.svg?branch=master)](https://travis-ci.org/BoogeeDoo/real-homedir)
+[![Coverage Status](https://img.shields.io/coveralls/BoogeeDoo/real-homedir/master.svg)](https://coveralls.io/r/BoogeeDoo/real-homedir?branch=master)
+[![License](https://img.shields.io/npm/l/real-homedir.svg?style=flat)](https://www.npmjs.org/package/real-homedir)
+[![Dependency Status](https://david-dm.org/BoogeeDoo/real-homedir.svg)](https://david-dm.org/BoogeeDoo/real-homedir)
+
 Get real home directory in node.js.
 
 ## Why This Package?
