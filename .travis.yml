@@ -8,6 +8,8 @@ sudo: required
 install:
   - export CXX="g++-4.8" CXX="gcc-4.8"
   - npm install
+  - sudo useradd -m test
+  - sudo cat /etc/passwd
 addons:
   apt:
     sources:
@@ -17,3 +19,4 @@ addons:
       - g++-4.8
       - clang
       - sudo
+after_script: make test-coveralls

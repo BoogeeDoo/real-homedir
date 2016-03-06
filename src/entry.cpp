@@ -37,4 +37,4 @@ NAN_MODULE_INIT(InitAll)
             Nan::GetFunction(Nan::New<v8::FunctionTemplate>(GetTrueHomeDir)).ToLocalChecked());
 }
 
-NODE_MODULE(_homedir, InitAll);
+NODE_MODULE(homedir, InitAll);

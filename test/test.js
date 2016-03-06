@@ -24,9 +24,16 @@ describe("homedir", function() {
     it("should equal to another user", function() {
         if(process.env.TRAVIS) {
             var syncRunner = require("sync-runner");
-            syncRunner("useradd -m test");
-            var result = syncRunner("sudo -u test node test/test_script.js");
-            result.should.be.eql("/home/test");
+            var result = syncRunner("sudo -u test " + process.execPath + " test_script.js", __dirname);
+            result.trim().should.be.eql(process.env.HOME + "\n/home/test");
+        }
+    });
+    
+    it("should equal to another user with -i", function() {
+        if(process.env.TRAVIS) {
+            var syncRunner = require("sync-runner");
+            var result = syncRunner("sudo -u test -i " + process.execPath + " test_script.js", __dirname);
+            result.trim().should.be.eql("/home/test\n/home/test");
         }
     });
 });
