@@ -4,7 +4,7 @@
   "description": "Get real home directory.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "make test"
   },
   "repository": {
     "type": "git",
@@ -21,5 +21,12 @@
   "homepage": "https://github.com/BoogeeDoo/real-homedir#readme",
   "dependencies": {
     "nan": "^2.2.0"
+  },
+  "devDependencies": {
+    "coveralls": "^2.11.8",
+    "istanbul": "^0.4.2",
+    "mocha": "^2.4.5",
+    "should": "^8.2.2",
+    "sync-runner": "^0.1.5"
   }
 }
