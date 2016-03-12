@@ -6,8 +6,8 @@
  */
 "use strict";
 
-var _homedir = require("./build/Release/homedir");
+var _homedir = require("./build/Release/homedir").homedir;
 
 module.exports = function() {
-    return _homedir.homedir();
+    return _homedir();
 };
